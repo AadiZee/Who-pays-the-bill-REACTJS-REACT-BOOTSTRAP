@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { MyContext } from "./context";
+import Stage1 from "./components/stage-1/stage-1";
+import Stage2 from "./components/stage-2/stage-2";
+import "./styles/App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  static contextType = MyContext;
+  render() {
+    return (
+      <div className="ui wrapper">
+        <div className="ui center-wrapper">
+          <h1>Who pays the bill ?</h1>
+          {this.context.state.stage === 1 ? <Stage1 /> : <Stage2 />}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
